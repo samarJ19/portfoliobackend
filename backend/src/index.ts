@@ -18,8 +18,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(express.json());
-
-
+import {router as adminRoutes} from "./routes/admin";
+app.use('/api/v1', adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
