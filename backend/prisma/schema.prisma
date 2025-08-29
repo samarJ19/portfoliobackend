@@ -14,11 +14,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model user {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   email String @unique
   password String
+}
+
+enum Category{
+  PORTRAIT
+  AUTOMOBILE
+  STREET
+  LANDSCAPE   //One added example category
+}
+
+model Photo {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  imageURL String @unique 
+  publicId String @unique
+  category Category
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 //Photo model, will contain delivery url, publicId, category and other metadata. Using category we will render particular image in its category
